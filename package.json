@@ -1,6 +1,6 @@
 {
   "name": "graphql-markdown",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "Generate documentation for your GraphQL schema in Markdown",
   "main": "src/index.js",
   "bin": "src/index.js",
@@ -19,7 +19,6 @@
     "format": "npm run lint:fix || true",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky install",
     "test": "npm run lint && npm run test:coverage",
     "test:coverage": "jest --coverage",
     "test:only": "jest"
@@ -52,7 +51,6 @@
     "eslint-plugin-standard": "^5.0.0",
     "graphbrainz": "^8.0.0",
     "graphql": "^16.0.0",
-    "husky": "^8.0.1",
     "jest": "^29.1.2",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",

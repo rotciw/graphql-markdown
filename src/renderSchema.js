@@ -34,66 +34,46 @@ function renderObject(type, options) {
   if (type.description) {
     printer(`${type.description}\n`)
   }
-  printer('<table>')
-  printer('<thead>')
-  printer('<tr>')
-  if (isInputObject) {
-    printer('<th colspan="2" align="left">Field</th>')
-  } else {
-    printer('<th align="left">Field</th>')
-    printer('<th align="right">Argument</th>')
-  }
-  printer('<th align="left">Type</th>')
-  printer('<th align="left">Description</th>')
-  printer('</tr>')
-  printer('</thead>')
-  printer('<tbody>')
-
-  const fields = isInputObject ? type.inputFields : type.fields
-  fields.forEach((field) => {
-    printer('<tr>')
-    printer(
-      `<td colspan="2" valign="top"><strong>${field.name}</strong>${
-        field.isDeprecated ? ' ⚠️' : ''
-      }</td>`
-    )
-    printer(`<td valign="top">${renderType(field.type, { getTypeURL })}</td>`)
+  const fields2 = isInputObject ? type.inputFields : type.fields
+  fields2.forEach((field) => {
+    printer('## ' + field.name + field.isDeprecated ? ' ⚠️' : '')
+    printer('### Response')
+    printer('Returns a ' + renderType(field.type, { getTypeURL }))
     if (field.description || field.isDeprecated) {
-      printer('<td>')
       if (field.description) {
-        printer(`\n${field.description}\n`)
+        printer(`${field.description}`)
       }
       if (field.isDeprecated) {
-        printer('<p>⚠️ <strong>DEPRECATED</strong></p>')
+        printer('⚠️ <strong>DEPRECATED</strong>')
         if (field.deprecationReason) {
           printer('<blockquote>')
           printer(`\n${field.deprecationReason}\n`)
           printer('</blockquote>')
         }
       }
-      printer('</td>')
-    } else {
-      printer('<td></td>')
     }
-    printer('</tr>')
     if (!isInputObject && field.args.length) {
+      printer('---')
+      printer('### Arguments')
+      printer('| Name | Type | Description |')
+      printer(
+        '| ----------------------------------------------- | ---- | ----------- |'
+      )
       field.args.forEach((arg, i) => {
-        printer('<tr>')
-        printer(`<td colspan="2" align="right" valign="top">${arg.name}</td>`)
-        printer(`<td valign="top">${renderType(arg.type, { getTypeURL })}</td>`)
-        if (arg.description) {
-          printer('<td>')
-          printer(`\n${arg.description}\n`)
-          printer('</td>')
-        } else {
-          printer('<td></td>')
-        }
-        printer('</tr>')
+        printer(
+          '| ' +
+            arg.name +
+            ' | ' +
+            renderType(arg.type, { getTypeURL }) +
+            ' | ' +
+            arg.description
+            ? arg.description
+            : '' + ' |'
+        )
+        printer('---')
       })
     }
   })
-  printer('</tbody>')
-  printer('</table>')
 }
 
 function renderSchema(schema, options) {
