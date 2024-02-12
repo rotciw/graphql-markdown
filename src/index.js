@@ -17,11 +17,7 @@ function run(
 ) {
   const args = parseArgs(argv);
 
-  if (args.help) {
-    printHelp(console);
-  } else if (args.version) {
-    console.log(require("../package.json").version);
-  } else if (args._.length === 1) {
+  if (args._.length === 1) {
     if (args.require) {
       const requirePath = resolveFrom(".", args.require);
       if (requirePath) {
