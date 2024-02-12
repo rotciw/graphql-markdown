@@ -5,8 +5,15 @@
 **The easiest way to document your GraphQL schema.**
 
 [![npm version](https://img.shields.io/npm/v/graphql-markdown.svg)](https://www.npmjs.com/package/graphql-markdown)
+Forked from [GraphQL Markdown](https://github.com/exogen/graphql-markdown)
 
-</div>
+## </div>
+
+# Changes from GraphQL Markdown:
+
+- Breaks down each heading to different markdown files.
+- Custom format which is used to render as different pages in React
+- Saves the files locally
 
 ---
 
