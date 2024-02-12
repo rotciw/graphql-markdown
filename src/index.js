@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 "use strict";
-const parseArgs = require("minimist");
 const { loadSchemaJSON, schemaToJSON } = require("./loadSchema");
 const renderSchema = require("./renderSchema");
 
@@ -11,21 +10,10 @@ function safeExit(code) {
 }
 
 function run(schemaPath, { exit = true } = {}) {
-  const args = parseArgs(argv);
-  const headers = [].concat(args.header || []).reduce((obj, header) => {
-    const [key, ...value] = String(header).split("=");
-    obj[key] = value.join("=");
-    return obj;
-  }, {});
-  const loadOptions = { headers };
-  loadSchemaJSON(schemaPath, loadOptions).then((schema) => {
+  loadSchemaJSON(schemaPath).then((schema) => {
     const options = {
-      title: args.title,
       skipTitle: false,
-      prologue: args.prologue,
-      epilogue: args.epilogue,
-      skipTableOfContents: args.toc === false,
-      headingLevel: args["heading-level"],
+      skipTableOfContents: false,
     };
     if (options.title === false) {
       options.title = "";
@@ -53,7 +41,3 @@ module.exports = {
   schemaToJSON,
   renderSchema,
 };
-
-if (require.main === module) {
-  run();
-}

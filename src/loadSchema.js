@@ -27,7 +27,7 @@ function schemaToJSON(schema, options) {
   });
 }
 
-function loadSchemaJSON(schemaPath, loadOptions) {
+function loadSchemaJSON(schemaPath) {
   if (schemaPath.match(/\.g(raph)?ql$/)) {
     return parseSchemaGraphQL(schemaPath).then(schemaToJSON);
   } else {
