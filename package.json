@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "graphql": "^16.8.1",
-    "minimist": "^1.2.8",
-    "resolve-from": "^5.0.0"
+    "minimist": "^1.2.8"
   }
 }
