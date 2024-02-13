@@ -173,7 +173,7 @@ function renderSchema(schema, options, directory) {
       output += "<ul>" + "\n";
       inputs.forEach((type) => {
         output +=
-          `<li><a href="inputs#${type.name.toLowerCase()}">${
+          `<li><a href="${type.ofType}#${type.name.toLowerCase()}">${
             type.name
           }</a> </li>` + "\n";
       });
@@ -307,7 +307,7 @@ function renderSchema(schema, options, directory) {
       output += "</span>" + "\n";
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync(`${directory}/inputs.md`, output, (err) => {
+    fs.writeFileSync(`${directory}/input_objects.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
