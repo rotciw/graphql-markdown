@@ -84,7 +84,7 @@ function renderObject(type, objectType, options) {
   return output;
 }
 
-function renderSchema(schema, options) {
+function renderSchema(schema, options, directory) {
   options = options || {};
   const title = options.title || "Schema Types";
   const skipTitle = options.skipTitle || false;
@@ -227,7 +227,7 @@ function renderSchema(schema, options) {
     output += "</nav>" + "\n";
     output += "</div>" + "\n";
 
-    fs.writeFileSync("toc.md", output, (err) => {
+    fs.writeFileSync(`${directory}/toc.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -246,7 +246,7 @@ function renderSchema(schema, options) {
         printer,
         getTypeURL,
       }) + "\n";
-    fs.writeFileSync("query.md", output, (err) => {
+    fs.writeFileSync(`${directory}/query.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -263,7 +263,7 @@ function renderSchema(schema, options) {
       printer,
       getTypeURL,
     });
-    fs.writeFileSync("mutation.md", output, (err) => {
+    fs.writeFileSync(`${directory}/mutation.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -285,7 +285,7 @@ function renderSchema(schema, options) {
       output += "</span>" + "\n";
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync("objects.md", output, (err) => {
+    fs.writeFileSync(`${directory}/objects.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -307,7 +307,7 @@ function renderSchema(schema, options) {
       output += "</span>" + "\n";
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync("inputs.md", output, (err) => {
+    fs.writeFileSync(`${directory}/inputs.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -357,7 +357,7 @@ function renderSchema(schema, options) {
       output += "</table>" + "\n";
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync("enums.md", output, (err) => {
+    fs.writeFileSync(`${directory}/enums.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -377,7 +377,7 @@ function renderSchema(schema, options) {
       }
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync("scalars.md", output, (err) => {
+    fs.writeFileSync(`${directory}/scalars.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -399,7 +399,7 @@ function renderSchema(schema, options) {
       output += "</span>" + "\n";
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync("interfaces.md", output, (err) => {
+    fs.writeFileSync(`${directory}/interfaces.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
@@ -438,7 +438,7 @@ function renderSchema(schema, options) {
       output += "</table>" + "\n";
       output += "\n" + "---" + "\n";
     });
-    fs.writeFileSync("unions.md", output, (err) => {
+    fs.writeFileSync(`${directory}/unions.md`, output, (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });

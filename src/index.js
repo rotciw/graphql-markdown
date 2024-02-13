@@ -9,7 +9,7 @@ function safeExit(code) {
   });
 }
 
-function run(schemaPath, { exit = true } = {}) {
+function run(schemaPath, dirPath, { exit = true } = {}) {
   loadSchemaJSON(schemaPath).then((schema) => {
     const options = {
       skipTitle: false,
@@ -28,7 +28,7 @@ function run(schemaPath, { exit = true } = {}) {
       });
     }
 
-    renderSchema(schema, options);
+    renderSchema(schema, options, dirPath);
     if (exit) {
       safeExit(0);
     }
