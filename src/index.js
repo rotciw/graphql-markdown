@@ -10,28 +10,33 @@ function safeExit(code) {
 }
 
 function run(schemaPath, dirPath, { exit = true } = {}) {
-  loadSchemaJSON(schemaPath).then((schema) => {
-    const options = {
-      skipTitle: false,
-      skipTableOfContents: false,
-    };
-    if (options.title === false) {
-      options.title = "";
-      options.skipTitle = true;
-    } else if (Array.isArray(options.title)) {
-      options.title.forEach((value) => {
-        if (typeof value === "string") {
-          options.title = value;
-        } else if (value === false) {
+  return new Promise((resolve, reject) => {
+    loadSchemaJSON(schemaPath)
+      .then((schema) => {
+        const options = {
+          skipTitle: false,
+          skipTableOfContents: false,
+        };
+        if (options.title === false) {
+          options.title = "";
           options.skipTitle = true;
+        } else if (Array.isArray(options.title)) {
+          options.title.forEach((value) => {
+            if (typeof value === "string") {
+              options.title = value;
+            } else if (value === false) {
+              options.skipTitle = true;
+            }
+          });
         }
-      });
-    }
 
-    renderSchema(schema, options, dirPath);
-    if (exit) {
-      safeExit(0);
-    }
+        renderSchema(schema, options, dirPath);
+        if (exit) {
+          safeExit(0);
+        }
+        resolve();
+      })
+      .catch(reject);
   });
 }
 
